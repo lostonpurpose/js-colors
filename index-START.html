@@ -19,6 +19,7 @@ ctx.lineJoin = 'round';
 ctx.lineCap = 'round';
 let size = 1;
 let hue = 0;
+let direction = true;
 
 let isDrawing = false;
 let lastX = 0;
@@ -38,8 +39,26 @@ function draw(e) {
   [lastX, lastY] = [e.offsetX, e.offsetY]
 
   hue++
-  size++
-  // [lastX, lastY] = [e.offsetX, e.offsetY];
+  if (hue >= 360) {
+    hue = 0
+  };
+
+  if (size >= 250) {
+    direction = false
+  }
+
+  if (size === 1) {
+    direction = true
+  }
+
+  if (direction === true) {
+    size++
+  }
+
+  if (direction === false) {
+    size--
+  }
+
 }
 
 canvas.addEventListener('mousedown', (e) => {
